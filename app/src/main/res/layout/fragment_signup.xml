@@ -71,7 +71,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signupBtn1"
         android:layout_width="326dp"
         android:layout_height="45dp"
 
@@ -82,7 +82,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtRePassword" />
 
-<!--    <Button-->
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="326dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="Login here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupBtn1" />
+
+    <!--    <Button-->
 <!--        android:id="@+id/button3"-->
 <!--        android:layout_width="329dp"-->
 <!--        android:layout_height="45dp"-->

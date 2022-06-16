@@ -5,55 +5,61 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.loginBtn
+import kotlinx.android.synthetic.main.fragment_signup.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SignupFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignupFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signup, container, false)
+            return inflater.inflate(R.layout.fragment_signup, container, false)
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignupFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignupFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loginBtn.setOnClickListener {
+            val signinfrag = LoginFragment()
+            val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.frameLayout, signinfrag)
+            transaction.commit()
+        }
+
+
+        signupBtn1.setOnClickListener(){
+            val userName1 = edtUserName.text.toString().trim()
+            val email = edtEmail.text.toString().trim()
+            val password1 = edtPassword.text.toString().trim()
+            val password2 = edtRePassword.text.toString().trim()
+
+
+            if(userName1.length == 0){
+                edtUserName.error = "UserName Required"
+            }else if(userName1.length <=8){
+                edtUserName.error = "UserName Must be 8 Char"
+            }else if(email.length == 0){
+                edtEmail.error = "Email Id Required"
+            }else if(email.length <= 8){
+                    edtEmail.error = "Email contain must be 8 char min."
+            }else if(password1.length == 0){
+                edtPassword.error = "Password Required"
+            }else if(password1.length <=8) {
+                edtPassword.error = "Password must be 8 char Required"
+            }else if(password2 != password1){
+                edtRePassword.error = "Please Enter Correct password"
+            }else{
+                Toast.makeText(requireActivity(),"Signup successful",Toast.LENGTH_LONG).show()
             }
+
+
+        }
     }
 }
