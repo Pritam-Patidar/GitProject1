@@ -1,35 +1,35 @@
 package com.example.userdataapplication.data
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 
-
-@Database(entities = [User::class], version = 1, exportSchema = false)
-abstract class UserDatabase :RoomDatabase(){
+@Database(entities = [User::class], version = 1)
+abstract class UserDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
 
-    companion object{
-        @Volatile
-        private var INSTANCE: UserDatabase? = null
 
-        fun getDatabase(context: Context):UserDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this){
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    UserDatabase::class.java,
-                     "user_database"
-                ).build()
-            INSTANCE = instance
-                return  instance
+//    companion object : RoomDatabase.Callback() {
+//
+////        fun createOrGetAppDatabase(context: Context): UserDatabase {
+////            return get(UserDatabase::class.java)
+////        }
+//
+//        override fun onCreate(db:SupportSQLiteDatabase) {
+//            super.onCreate(db)
+//            //Log.info("Database created")
+//        }
+//
+//        override fun onOpen(db: SupportSQLiteDatabase) {
+//            super.onOpen(db)
+//            //Log.info("Database opened")
+//        }
+//
+//        override fun onDestructiveMigration(db: SupportSQLiteDatabase) {
+//            super.onDestructiveMigration(db)
+//            //Log.info("Database destructively migrated to version $latestVersion")
+//        }
+//    }
 
-            }
-        }
-    }
 }

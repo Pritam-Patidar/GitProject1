@@ -15,6 +15,10 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 
 class LoginFragment : Fragment() {
 
+
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +41,10 @@ class LoginFragment : Fragment() {
 
         loginBtn.setOnClickListener {
 
+
+
+
+
             val userName = editTextUserName.text.toString().trim()
             val password = editTextPassword.text.toString().trim()
 //            val regex1 = Regex("[A-Z]");
@@ -58,4 +66,11 @@ class LoginFragment : Fragment() {
     }
 
 }
+
+
+
+
+
+
+
 
